@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+</head>
+<body>
+	<form>
+		<label for="password">Password:</label>
+		<input type="password" id="password">
+		<button type="button" onclick="checkPassword()">Submit</button>
+	</form>
+
+	<script>
+		// Function to check the password and redirect to the main page
+		function checkPassword() {
+			var password = document.getElementById('password').value;
+			var storedPassword = sessionStorage.getItem('password');
+
+			// Check if the password matches the stored password
+			if (password === storedPassword) {
+				// Set the logged_in flag in sessionStorage to true
+				sessionStorage.setItem('logged_in', 'true');
+
+				// Redirect to the main page
+				window.location.href = 'main.html';
+			} else {
+				alert('Invalid password');
+			}
+		}
+	</script>
+</body>
+</html>

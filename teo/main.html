@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Main</title>
+</head>
+<body>
+	<button onclick="window.location.href='register.html'">Register</button>
+	<p id="login-status"></p>
+
+	<script>
+		// Check if the user is logged in
+		var isLoggedIn = (sessionStorage.getItem('logged_in') === 'true');
+
+		// Update the login status message
+		var loginStatus = document.getElementById('login-status');
+		if (isLoggedIn) {
+			loginStatus.textContent = 'You are logged in.';
+		} else {
+			loginStatus.textContent = 'You are not logged in.';
+		}
+	</script>
+</body>
+</html>
