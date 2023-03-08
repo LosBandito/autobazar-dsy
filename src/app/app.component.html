@@ -25,7 +25,7 @@
   }
 </style>
 
-
+<router-outlet></router-outlet>
 
 <div class="container">
   <div class="row">
@@ -35,13 +35,10 @@
         <div class="card-body">
           <h5 class="card-title">{{ item[0] }}</h5>
           <p class="card-text">{{ item[1] }} EUR</p>
-
-          <!-- Add the card-buttons class to the button container -->
           <div class="card-buttons">
             <button style="margin-right: 10px" type="button" class="btn btn-primary" (click)="openPopup(i)">Zobraz detail</button>
-            <button class="btn btn-success">Kupit</button>
+            <button class="btn btn-success" (click)="buyItem(item)">Kupit</button>
           </div>
-
           <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': modalStates[i] ? 'block' : 'none' }">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -50,9 +47,8 @@
                   <img [src]="item[2]" class="card-img-top" alt="Image" style="max-width: 200px">
                 </div>
                 <div class="modal-body">
-                  <p class="card-text">There wil be description</p>
+                  <p class="card-text">There will be description</p>
                   <p class="card-text">{{ item[1] }} EUR</p>
-
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" (click)="closePopup(i)">Close</button>
