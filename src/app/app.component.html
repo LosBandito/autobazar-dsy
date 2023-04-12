@@ -70,8 +70,11 @@
       card.querySelector('.card-buttons').classList.add('card-buttons-visible');
     });
     card.addEventListener('mouseleave', () => {
-      card.querySelector('.card')
+      card.querySelector('.card-buttons').classList.remove('card-buttons-visible');
+    });
+  });
 </script>
+
 <script>
   // Add event listeners to toggle the card-buttons class
   const cards = document.querySelectorAll('.card');
@@ -86,4 +89,4 @@
 </script>
 
 
-<app-search>  </app-search>
+
