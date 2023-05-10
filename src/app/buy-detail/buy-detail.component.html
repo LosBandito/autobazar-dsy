@@ -1,0 +1,27 @@
+
+
+<div class="alert alert-success alert-dismissible fade show position-fixed w-100" role="alert" style="z-index:1" *ngIf="showSuccessAlert">
+  <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  Seller has been successfully contacted.
+</div>
+
+
+<div class="card">
+  <div class="card-header">
+    <h4>Car Details</h4>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ name }}</h5>
+    <p class="card-text">Price: {{ price }}</p>
+    <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare, odio sed congue consectetur, nulla sapien lobortis lacus, a interdum augue elit sed erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Duis bibendum ultrices ultrices. Morbi consequat ligula a neque dignissim, ac sodales ipsum faucibus. Pellentesque sit amet finibus nisi. Quisque et diam vehicula, ultricies augue et, aliquet lacus. Quisque vitae sodales metus, ut sollicitudin tellus. Aenean semper sodales mauris eu lobortis. </p>
+    <button class="btn btn-success" (click)="showAlert()">Contact seller</button>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">1/1/1950</small>
+  </div>
+  <button class="btn btn-danger" (click)="return()">Go back</button>
+</div>
+
+
