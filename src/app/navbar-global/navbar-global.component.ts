@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,11 +6,19 @@ import {Router} from "@angular/router";
   templateUrl: './navbar-global.component.html',
   styleUrls: ['./navbar-global.component.css']
 })
-export class NavbarGlobalComponent {
-      constructor(private router: Router) {
-      }
+export class NavbarGlobalComponent implements OnInit{
+  displayname: string = '';
 
-      login(){
-        this.router.navigateByUrl('/login');
-      }
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const username = localStorage.getItem('username');
+    if (username) {
+      this.displayname = username;
+    }
+  }
+
+  login() {
+    this.router.navigateByUrl('/login');
+  }
 }

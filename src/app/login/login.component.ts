@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
-
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +9,7 @@ import {NgForm} from "@angular/forms";
 })
 export class LoginComponent {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private router:Router) {
     }
 
   displayStyle = "none";
@@ -38,20 +38,29 @@ export class LoginComponent {
   }
 
   login(formValue: any): void {
-    console.log("click")
+    console.log("click");
     const username = formValue.username;
     const password = formValue.password;
     this.http.post('http://localhost:5000/login', { username, password }).subscribe(
       response => {
-        console.log(response)
-        localStorage.setItem('username', username);
-        console.log('Username saved to localStorage');
+        console.log(response);
+        const responseObject = response as { message: string }; // Type assertion
+        if (responseObject.message === "Login successful") {
+          // Redirect the user
+          console.log("Redirecting...");
+          localStorage.setItem('username', username);
+          console.log('Username saved to localStorage');
+          this.router.navigate(["/main"])
+        } else {
+          console.log("Response: ", response);
+        }
       },
       error => {
         console.log(error);
       }
     );
   }
+
 
 
 
