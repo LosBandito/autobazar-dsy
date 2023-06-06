@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
 import { Router } from "@angular/router";
+import {AuthGuard} from "../auth.guard";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,14 +10,15 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent {
 
-    constructor(private http: HttpClient,private router:Router) {
-    }
+  constructor(private http: HttpClient, private router: Router,private authGuard: AuthGuard) {
+  }
 
   displayStyle = "none";
 
   openPopup() {
     this.displayStyle = "block";
   }
+
   closePopup() {
     this.displayStyle = "none";
   }
@@ -27,8 +29,8 @@ export class LoginComponent {
       const name = form.value.name;
       const email = form.value.email;
       const password = form.value.password;
-      console.log(name,password)
-      this.http.post('http://localhost:5000/users', { username: name, password: password }).subscribe(
+      console.log(name, password)
+      this.http.post('http://localhost:5000/users', {username: name, password: password}).subscribe(
         (response) => console.log(response),
         (error) => console.log(error)
       );
@@ -37,29 +39,41 @@ export class LoginComponent {
     }
   }
 
+
   login(formValue: any): void {
-    console.log("click");
     const username = formValue.username;
     const password = formValue.password;
     this.http.post('http://localhost:5000/login', { username, password }).subscribe(
       response => {
         console.log(response);
-        const responseObject = response as { message: string }; // Type assertion
-        if (responseObject.message === "Login successful") {
-          // Redirect the user
-          console.log("Redirecting...");
+        const responseObject = response as { message: string, token: string }; // Type assertion
+        if (responseObject.message === 'Login successful') {
+          // Store the token in localStorage
+          localStorage.setItem('token', responseObject.token);
+          console.log('Token saved to localStorage');
+
+          // Store the username in localStorage (optional)
           localStorage.setItem('username', username);
           console.log('Username saved to localStorage');
-          this.router.navigate(["/main"])
+
+          // Redirect the user
+          console.log('Redirecting...');
+          this.router.navigate(['/main']);
         } else {
-          console.log("Response: ", response);
+          console.log('Response: ', response);
+          // Handle login failure (e.g., display error message)
         }
       },
       error => {
         console.log(error);
+        // Handle error (e.g., display error message)
       }
     );
-  }
+
+
+}
+
+
 
 
 

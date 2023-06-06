@@ -21,4 +21,11 @@ export class NavbarGlobalComponent implements OnInit{
   login() {
     this.router.navigateByUrl('/login');
   }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    this.router.navigateByUrl('/login');
+  }
+
 }
