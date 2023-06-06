@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {NgForm} from "@angular/forms";
 import { Router } from "@angular/router";
 import {AuthGuard} from "../auth.guard";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
