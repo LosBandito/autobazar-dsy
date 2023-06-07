@@ -18,6 +18,12 @@ export class NavbarGlobalComponent implements OnInit{
     }
   }
 
+  login() {
+    this.router.navigateByUrl('/login');
+  }
+  homapage() {
+    this.router.navigateByUrl('/landing');
+  }
 
   logout(): void {
     localStorage.removeItem('token');

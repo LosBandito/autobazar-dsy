@@ -30,7 +30,7 @@ export class BuyDetailComponent implements OnInit {
   }
 
   return(){
-    this.router.navigate(['']); // navigate to the default route
+    this.router.navigate(['main']); // navigate to the default route
   }
 
 }

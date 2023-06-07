@@ -49,26 +49,23 @@ export class LoginComponent {
         console.log(response);
         const responseObject = response as { message: string, token: string }; // Type assertion
         if (responseObject.message === 'Login successful') {
-          // Store the token in localStorage
           localStorage.setItem('token', responseObject.token);
           console.log('Token saved to localStorage');
 
-          // Store the username in localStorage (optional)
           localStorage.setItem('username', username);
           console.log('Username saved to localStorage');
 
-          // Redirect the user
+
           console.log('Redirecting...');
           this.router.navigate(['/main']);
         } else {
           console.log('Response: ', response);
-          // Handle login failure (e.g., display error message)
+
         }
       },
       error => {
         console.log(error);
-        // Handle error (e.g., display error message)
-      }
+        }
     );
 
 
